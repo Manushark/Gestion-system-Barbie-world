@@ -35,7 +35,7 @@ function cargar_datos($codigo) {
 function listar_registros() {
     $registros = [];
     if (!is_dir("datos")) {
-        return $registros; // Retornar array vacío si no existe la carpeta
+        return $registros; 
     }
     $archivos = scandir("datos");
     foreach ($archivos as $archivo) {

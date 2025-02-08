@@ -1,38 +1,37 @@
 <?php
-require("library/engine.php");
-$personaje = new personaje();
-$personaje->identificacion = $_POST['identificacion'];
-$personaje->nombre = $_POST['nombre'];
-$personaje->apellido = $_POST['apellido'];
-$personaje->fecha_nacimiento = $_POST['fecha_nacimiento'];
-$personaje->foto = $_POST['foto'];
-$personaje->habilidades =$_POST ['habilidades'];
+require('library/engine.php');
 
-if (!empty($_POST['habilidades']['nombre']) && is_array($_POST['habilidades']['nombre'])) {
-    foreach ($_POST['habilidades']['nombre'] as $i => $nombre) {
-        $habilidad = new habilidades();
-        $habilidad->nombre = $nombre;
-        $habilidad->tipo = $_POST['habilidades']['tipo'][$i] ?? '';
-        $habilidad->nivel = $_POST['habilidades']['nivel'][$i] ?? 0;
-        $personaje->habilidades[] = $habilidad;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $personaje = new personaje();
+    $personaje->identificacion = $_POST['identificacion'] ?? '';
+    $personaje->nombre = $_POST['nombre'] ?? '';
+    $personaje->apellido = $_POST['apellido'] ?? '';
+    $personaje->fecha_nacimiento = $_POST['fecha_nacimiento'] ?? '';
+    $personaje->foto = $_POST['foto'] ?? '';
+
+    // Procesar habilidades si existen
+    if (isset($_POST['habilidades']['nombre'])) {
+        $personaje->habilidades = [];
+
+        for ($i = 0; $i < count($_POST['habilidades']['nombre']); $i++) {
+            $habilidad = new stdClass();
+            $habilidad->nombre = $_POST['habilidades']['nombre'][$i];
+            $habilidad->tipo = $_POST['habilidades']['tipo'][$i];
+            $habilidad->nivel = $_POST['habilidades']['nivel'][$i];
+
+            $personaje->habilidades[] = $habilidad;
+        }
     }
-    $personaje->habilidades = $habilidades;
 
-    // Guardar datos
-    guardar_datos($personaje);
+    // Guardar datos correctamente con dos parámetros
+    guardar_datos($personaje->identificacion, $personaje);
 
+    // Redirigir a la página principal
     header("Location: index.php");
-    exit();
-} else {
-    echo "⚠️ No se recibieron habilidades.";
-} else {
-    echo "⚠️ No se recibieron habilidades.";
+    exit;
 }
-
-
-guardar_datos($personaje -> identificacion, $personaje);
-plantilla::aplicar();  
 ?>
+
 
 <h1>¡💾Personaje registrado❤️!</h1>
 <p>¡El personaje ha sido registrado exitosamente!</p>

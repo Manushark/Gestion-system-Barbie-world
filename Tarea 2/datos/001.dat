@@ -1,0 +1,1 @@
+O:9:"personaje":6:{s:14:"identificacion";s:3:"001";s:6:"nombre";s:7:"Barbie ";s:8:"apellido";s:5:"Mejia";s:16:"fecha_nacimiento";s:10:"2000-01-02";s:4:"foto";s:76:"https://i.pinimg.com/originals/2f/ef/99/2fef9967ced9dab7379f57d301073d5c.jpg";s:11:"habilidades";a:1:{i:0;O:8:"stdClass":3:{s:6:"nombre";s:7:"Maestro";s:4:"tipo";s:8:"Avanzada";s:5:"nivel";s:4:"1000";}}}
