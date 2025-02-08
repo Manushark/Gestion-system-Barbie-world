@@ -72,10 +72,7 @@
     ?>
 </table>
 
-<div class="right">
-    <a href="index.php">🏠Inicio</a>
-<a href="registers.php" style="button">🔖Registrarse🔖</a>
-</div>
+
 
 <?php
 
@@ -121,3 +118,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+
+<div class="right">
+    <a href="index.php">🏠Inicio</a>
+<a href="registers.php" style="button">🔖Registrarse🔖</a>
+</div>
